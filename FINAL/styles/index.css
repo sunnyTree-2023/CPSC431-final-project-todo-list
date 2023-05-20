@@ -1,0 +1,109 @@
+/* html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-left:10px;
+    font-size: 16px;
+}
+
+main {
+    padding: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+} */
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-left:10px;
+    font-size: 16px;
+    background-color: #bccbd9;
+}
+
+main {
+    padding: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    position:fixed;
+    top:0; 
+    left:0; 
+    right:0; 
+    bottom:0; 
+    padding:0; 
+    margin:0; 
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 100; /* ensure the overlay is on top */
+}
+
+
+.modal>div {
+    position:relative;
+    margin: 100px auto;
+    padding: 20px;
+    border: 10px solid #f7e7c6;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px black;
+    background-color: rgb(237, 237, 237);
+    min-width: 200px;
+    min-height: 300px;
+    max-width: 500px;
+    
+   /* z-index: 1000;  */
+}
+
+button [data-click='closeModal'] {
+
+        background-color: red;
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+}
+
+#close_button{
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.button {
+    cursor: pointer;
+    /* background-color: green; */
+    background: rgb(188,203,217);
+    background: linear-gradient(90deg, rgba(188,203,217,1) 0%, rgba(90,153,215,1) 50%, rgba(79,129,179,1) 68%, rgba(158,135,130,1) 100%);
+    color: white;
+    border-radius:30em;
+    height: 35px;
+    border-color: rgba(231,222,255,1);
+    /* font-weight: 5px; */
+    font-weight: bold ;
+}
+
+.ulColor{
+    background-color: chocolate;
+}
