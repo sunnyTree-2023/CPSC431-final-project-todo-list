@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- // Porject name: CPSC 431 Final Project - ToDo List 
+// File name:  index.html
+// Date : May 19 2023
+// Author: Jiu Lin  -->
+<head>
+    <title>CPSC431 Final Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+    <header>
+        <h1> Jiu Lin Final Project - ToDo List Demo</h1>
+        <h2> Click   * SHOW ALL LIST NAME ! **  to get latest lists and items </h2>
+        <p>This is CPSC 431 Database and Application </p>
+
+        <button type="button" data-click="getData" data-message="User click to get data form DB" class="button"> * SHOW
+            ALL LIST NAME ! ** </button>
+        <!-- <button type="button" data-click="getData" data-message="User click to get data form DB" data-name="{{name}}",  data-created="{{created}}"> {{name}} </button> -->
+
+        <h2> Add a New List ( in Modal Window ) </h2>
+        <button type="button" data-click="addList" class="button"> Add list Modal Window </button>
+
+        <!-- <button type="button" data-click="updateList" class="button"> Update List Name </button> -->
+    </header>
+
+    <hr>
+    <h3>API Area "My Final Project"</h3>
+    <p>This content comes from the API</p>
+    <p>
+        <button type="button" data-click="fetchApiDemo">List Summary !</button>
+    </p>
+    <div id="ApiArea">
+
+    </div>
+    <hr>
+
+    <h2>
+         ''List Info Display Area'''
+    </h2> <!-- I add it -->
+    <div id="get_data">
+    </div>
+
+
+    <!-- **********************************************************************************************************************************05/03/23 -->
+    <!-- Modal form to input a new list -->
+    <script type="text/html" id="AddListInterface">
+        <div class = "modal" >
+                <div id="modalText">
+                    <!-- <h2>3. Please Create a List </h2>  -->
+
+                    <button type= "button" id="close_button" data-click="closeModal"> &times; </button>
+                    
+                    <form id="postListForm">
+                        <label for="list_input"> <h2> Please Create a List </h2> </label>
+                        <input type="text" name="name" value="LIST NAME" maxlength="255" id ="input_list">
+                        <button type="button" data-click="postList" data-form="postNameForm"> Create a New List Name </button> <!--action need to coresponding to function name-->
+                    </form>
+                    
+                </div> 
+        </div>
+    </script>
+
+
+    <!-- Modal form to update a new list name   update a new list name   update a new list name   update a new list name-->
+    <script type="text/html" id="updateListInterface">
+            <div class = "modal" >
+                    <div id="modalText">
+                        <!-- <h2>3. Please Create a List </h2>  -->
+    
+                        <button type= "button" id="close_button" data-click="closeModal"> &times; </button>
+                        
+                        <form id="updateListForm">
+                            <label for="list_update"> <h2>Update the List Name Window </h2> </label>
+
+                            <input type="text" name="listidxhtml" value="list num at the end of list  " maxlength="255" id ="update_list">
+                            <input type="text" name="newlistnamehtml" value="NEW LIST NAME" maxlength="255" id ="update_list">
+                            <button type="button" data-click="changeListName" data-form="updateNameForm"> CHANGE  </button> <!--action need to coresponding to function name-->
+                        </form>
+                    </div> 
+            </div>
+        </script>
+
+
+    <script id="FooBar" type="text/html">
+            <h1>{{title}}</h1>
+            <ul>
+                {{#buttons}}
+                <li>
+                    <button data-click="bar" data-message="{{msg}}">{{displayText}}</button>
+                </li>
+                {{/buttons}}
+            </ul>
+        </script>
+
+
+    <script type="text/html" id="ApiTemplate">
+        <h4>All the list you have: </h4>
+        <table id="fetchButtonTemplate">
+            <thead>
+                <tr>
+                <th>List Name</th>
+                <th>Create Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#.}}
+                <tr>
+                <td>{{name}}</td>
+                <td>{{created}}</td>
+                </tr>
+                {{/.}}
+            </tbody>
+        </table>
+    </script>
+
+
+    <!-- Creating by myself  -->
+    <!-- write getDataTemplate to display lists table information  -->
+    <!-- lists will be displayed in TEXT format -->
+    <script type="text/html" id="getDataTemplate">
+    <h4>Major List Q: </h4>
+    <div class="list-container">
+        <!-- many objects in an array  -->
+        {{#.}}
+        <div>
+            <!-- {{name}}, {{created}}, {{idx}} -->
+            <button type="button" data-click="downlaodList" data-idx="{{idx}}" id="toggleList">{{name}}</button>
+
+            <button type="button" data-click="updateList" data-idxHtml="{{idx}}" id="updateButton"> Update List Name </button> 
+            <button type="button" data-click="deleteList" data-idxHtml="{{idx}}" id="deleteButton"> DELETE </button> {{idx}}
+
+            <!-- what is the purpose for this ul ? Just for create another varaible which name is   list_idx  ?   -->
+            <ul id="list_{{idx}}" class="hidden" class="ulColor">
+                <li>
+                    <!-- <form id="postItemForm"> -->
+                        <!-- this form adding items to the table  -->
+                    <form id="list_{{idx}}_add"> 
+                        <!-- <input type="text"  name="list_idx_html" maxlength="512" placeholder="List#">  
+                        <input type="text"  name="name_html" maxlength="11" placeholder="Item Name">   -->
+                        <!-- <input type="checkbox" name="checked" data-click="checkItem" data-checkitemidx = "${{idx}}">   -->
+
+                        <input type="text"  name="list_idx_html" maxlength="512" placeholder="list_idx#" value="{{idx}}">  
+                        <input type="text"  name="text_html" maxlength="11" placeholder="Item Name New">  
+        
+                        <button type="button" data-click='postOneItem' id="postOneItemButton" data-idx="{{idx}}" > Add an Item .</button> 
+                        <!-- <button type="submit" data-click='postOneItem' > Submit </button>  -->
+                    </form>
+                </li>
+            </ul>
+        </div>
+    {{/.}}
+</div>
+</script>
+
+    <!-- dynamically creat a from to get user input -->
+    <script type="text/html" id="AddListInterfaceBackup">
+        <div class = "modal" id="modal">
+            <div >
+                <br>
+                <hr>
+                <p> Adding Things In the List</p>
+                <button type="close-button"> &times; </button>
+
+                    <form id="AddListForm">
+                        <input type="text" placeholder="List Name" name="name">
+                        <button type="submit"> Submit </button>
+                    </form>
+                </div>
+        </div>
+    </script>
+
+    <br><br><br><br><br><br><br>
+
+    <script type="module" src="index.js"></script>
+
+    <footer>
+        &copy; 2023 Jiu Lin, All Right Reserved! Instructor - Steven Cooper
+    </footer>
+</body>
+</html>

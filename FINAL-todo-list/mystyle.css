@@ -1,0 +1,24 @@
+/* .custom-element {
+    color: gray("100");
+    background-color: theme-color("dark");
+  }
+
+ */
+
+button {
+    cursor: pointer;
+    /* background-color: green; */
+    background: rgb(240,218,159);
+background: linear-gradient(339deg, rgba(240,218,159,1) 0%, rgba(224,242,251,1) 94%);
+    color: black;
+    border-radius:30em;
+    height: 30px;
+    border-color: rgba(231,222,255,1);
+    /* font-weight: 5px; */
+    font-weight: bold ;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
